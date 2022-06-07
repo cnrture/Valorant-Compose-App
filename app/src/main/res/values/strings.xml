@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Valorant Compose</string>
+
+    <string name="desc_valorant_logo">Valorant Logo</string>
+    <string name="desc_agent_image">Agent Image</string>
+    <string name="desc_map_image">Map Image</string>
+    <string name="desc_weapon_image">Weapon Image</string>
+
+    <string name="title_description">Description</string>
+    <string name="title_abilities">Abilities</string>
+    <string name="title_damage_range">Damage Range</string>
+    <string name="title_skins">Skins</string>
+
+    <string name="text_head">Head</string>
+    <string name="text_body">Body</string>
+    <string name="text_leg">Leg</string>
+</resources>
