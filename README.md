@@ -1,12 +1,12 @@
 # Valorant-Compose-App
 
-### A Valorant game information application built using Jetpack Compose and Valorant API(Unofficial).
+### A Valorant game information application built using Jetpack Compose - MVVM with Clean Arc - Hilt - Flow - Retrofit.
 [Valorant-API Link](https://valorant-api.com/)
 
 ## Project Features
  - Jetpack Compose
  - MVVM with Clean Architecture
- - Coroutine Flow
+ - Flow
  - Navigation Components
  - Hilt for Dependency Injection
  - Retrofit
