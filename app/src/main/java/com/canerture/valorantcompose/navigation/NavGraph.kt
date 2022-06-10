@@ -4,9 +4,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.*
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.canerture.valorantcompose.presentation.agent.agentdetail.AgentDetailScreen
 import com.canerture.valorantcompose.presentation.agent.agents.AgentsScreen
 import com.canerture.valorantcompose.presentation.competitivetiers.CompetitiveTiersScreen

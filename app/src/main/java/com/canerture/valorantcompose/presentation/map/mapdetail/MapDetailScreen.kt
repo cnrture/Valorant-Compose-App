@@ -12,10 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.canerture.valorantcompose.R
+import com.canerture.valorantcompose.common.components.ErrorText
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -63,17 +63,10 @@ fun MapDetailScreen(
             )
         }
 
-        if (state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colors.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
-        }
+        if (state.error.isNotBlank()) ErrorText(
+            state.error,
+            Modifier.align(Alignment.CenterHorizontally)
+        )
 
         if (state.isLoading) {
             CircularProgressIndicator(

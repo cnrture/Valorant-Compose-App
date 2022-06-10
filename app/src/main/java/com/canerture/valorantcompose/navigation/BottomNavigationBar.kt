@@ -15,7 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.canerture.valorantcompose.presentation.theme.ValoLightBlue
 import com.canerture.valorantcompose.presentation.theme.ValoRed
-import com.canerture.valorantcompose.presentation.theme.ValoYellow
+import com.canerture.valorantcompose.presentation.theme.ValoWhite
 
 @Composable
 fun BottomNavigationBar(
@@ -65,7 +65,7 @@ fun BottomNavigationBar(
                                     }
                                 },
                                 selectedContentColor = ValoRed,
-                                unselectedContentColor = ValoYellow,
+                                unselectedContentColor = ValoWhite,
                                 alwaysShowLabel = false
                             )
                         }

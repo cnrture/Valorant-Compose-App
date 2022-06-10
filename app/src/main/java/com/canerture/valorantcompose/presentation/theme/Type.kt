@@ -10,49 +10,49 @@ val Typography = Typography(
     body1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 14.sp
     ),
 
     h1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 32.sp
     ),
 
     h2 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 28.sp
     ),
 
     h3 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 24.sp
     ),
 
     h4 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 20.sp
     ),
 
     h5 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 16.sp
     ),
 
     h6 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        color = ValoYellow,
+        color = ValoWhite,
         fontSize = 12.sp
     ),
 )

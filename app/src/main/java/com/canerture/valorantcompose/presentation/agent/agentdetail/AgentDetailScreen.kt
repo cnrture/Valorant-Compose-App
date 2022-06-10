@@ -23,6 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.canerture.valorantcompose.R
+import com.canerture.valorantcompose.common.components.ErrorText
+import com.canerture.valorantcompose.common.components.HeaderText
 import com.canerture.valorantcompose.data.model.agents.Ability
 import com.canerture.valorantcompose.presentation.theme.ValoBlue
 import com.canerture.valorantcompose.presentation.theme.ValoLightBlue
@@ -103,11 +105,7 @@ fun AgentDetailScreen(
 
             Spacer(modifier = Modifier.size(24.dp))
 
-            Text(
-                text = stringResource(R.string.title_description),
-                color = ValoRed,
-                style = MaterialTheme.typography.h4
-            )
+            HeaderText(header = stringResource(R.string.title_description))
 
             Spacer(modifier = Modifier.size(8.dp))
 
@@ -123,28 +121,17 @@ fun AgentDetailScreen(
 
             Spacer(modifier = Modifier.size(24.dp))
 
-            Text(
-                text = stringResource(R.string.title_abilities),
-                color = ValoRed,
-                style = MaterialTheme.typography.h4
-            )
+            HeaderText(header = stringResource(R.string.title_abilities))
 
             Spacer(modifier = Modifier.size(8.dp))
 
-            TabLayout(state.agent.abilities)
+            TabLayout(it.abilities)
         }
 
-        if (state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colors.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
-        }
+        if (state.error.isNotBlank()) ErrorText(
+            state.error,
+            Modifier.align(Alignment.CenterHorizontally)
+        )
 
         if (state.isLoading) {
             CircularProgressIndicator(
@@ -157,7 +144,9 @@ fun AgentDetailScreen(
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabLayout(abilityList: List<Ability>) {
+fun TabLayout(
+    abilities: List<Ability>
+) {
 
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
@@ -185,7 +174,7 @@ fun TabLayout(abilityList: List<Ability>) {
                     )
                 }
             ) {
-                abilityList.forEachIndexed { index, ability ->
+                abilities.forEachIndexed { index, ability ->
                     val color = remember {
                         Animatable(ValoRed)
                     }
@@ -223,7 +212,7 @@ fun TabLayout(abilityList: List<Ability>) {
             Spacer(modifier = Modifier.size(12.dp))
 
             HorizontalPager(
-                count = abilityList.size,
+                count = abilities.size,
                 state = pagerState
             ) { page ->
                 Column(
@@ -231,13 +220,13 @@ fun TabLayout(abilityList: List<Ability>) {
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = abilityList[page].displayName,
+                        text = abilities[page].displayName,
                         style = MaterialTheme.typography.h5
                     )
 
                     Text(
                         modifier = Modifier.padding(16.dp),
-                        text = abilityList[page].description,
+                        text = abilities[page].description,
                         style = MaterialTheme.typography.body1,
                         textAlign = TextAlign.Center
                     )
@@ -245,5 +234,4 @@ fun TabLayout(abilityList: List<Ability>) {
             }
         }
     }
-
 }

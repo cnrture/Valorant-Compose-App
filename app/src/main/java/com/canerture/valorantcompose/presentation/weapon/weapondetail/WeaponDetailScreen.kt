@@ -1,7 +1,6 @@
 package com.canerture.valorantcompose.presentation.weapon.weapondetail
 
 import androidx.compose.animation.Animatable
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -18,10 +17,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.canerture.valorantcompose.R
+import com.canerture.valorantcompose.common.components.ErrorText
+import com.canerture.valorantcompose.common.components.HeaderText
+import com.canerture.valorantcompose.common.components.LinearProgress
 import com.canerture.valorantcompose.data.model.weapons.Skin
 import com.canerture.valorantcompose.presentation.theme.ValoBlue
 import com.canerture.valorantcompose.presentation.theme.ValoLightBlue
@@ -72,7 +73,8 @@ fun WeaponDetailScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     GlideImage(
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 24.dp),
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(horizontal = 32.dp, vertical = 24.dp),
                         imageModel = it.displayIcon,
                         circularReveal = CircularReveal(),
                         contentDescription = stringResource(R.string.desc_weapon_image)
@@ -96,11 +98,7 @@ fun WeaponDetailScreen(
 
             Spacer(modifier = Modifier.size(24.dp))
 
-            Text(
-                text = stringResource(R.string.title_damage_range),
-                color = Color.White,
-                style = MaterialTheme.typography.h4
-            )
+            HeaderText(header = stringResource(R.string.title_damage_range))
 
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -130,28 +128,17 @@ fun WeaponDetailScreen(
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            Text(
-                text = stringResource(R.string.title_skins),
-                color = Color.White,
-                style = MaterialTheme.typography.h4
-            )
+            HeaderText(header = stringResource(R.string.title_skins))
 
             Spacer(modifier = Modifier.size(16.dp))
 
             TabLayout(it.skins)
         }
 
-        if (state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colors.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
-        }
+        if (state.error.isNotBlank()) ErrorText(
+            state.error,
+            Modifier.align(Alignment.CenterHorizontally)
+        )
 
         if (state.isLoading) {
             CircularProgressIndicator(
@@ -164,8 +151,9 @@ fun WeaponDetailScreen(
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabLayout(skinList: List<Skin>) {
-
+fun TabLayout(
+    skins: List<Skin>
+) {
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -183,7 +171,7 @@ fun TabLayout(skinList: List<Skin>) {
                 selectedTabIndex = pagerState.currentPage,
                 edgePadding = 0.dp,
             ) {
-                skinList.forEachIndexed { tabIndex, skin ->
+                skins.forEachIndexed { tabIndex, skin ->
                     val color = remember {
                         Animatable(ValoRed)
                     }
@@ -218,16 +206,15 @@ fun TabLayout(skinList: List<Skin>) {
             Spacer(modifier = Modifier.size(12.dp))
 
             HorizontalPager(
-                count = skinList.size,
+                count = skins.size,
                 state = pagerState
             ) { page ->
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-
                     GlideImage(
-                        imageModel = skinList[page].displayIcon,
+                        imageModel = skins[page].displayIcon,
                         circularReveal = CircularReveal(),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.fillMaxWidth()
@@ -235,40 +222,12 @@ fun TabLayout(skinList: List<Skin>) {
                     )
 
                     Text(
-                        text = skinList[page].displayName,
+                        text = skins[page].displayName,
                         style = MaterialTheme.typography.h5,
                         modifier = Modifier.padding(16.dp)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun LinearProgress(header: String, progress: Float, progressString: String) {
-    val animatedProgress = animateFloatAsState(
-        targetValue = progress,
-        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
-    ).value
-
-    Column(
-        modifier = Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 8.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "$header - $progressString",
-            style = MaterialTheme.typography.h5,
-            color = ValoRed,
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.padding(4.dp))
-        LinearProgressIndicator(
-            progress = animatedProgress,
-            modifier = Modifier.height(10.dp),
-            color = ValoRed,
-            backgroundColor = Color.White
-        )
     }
 }
