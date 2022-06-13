@@ -17,7 +17,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.navigation.NavHostController
 import com.canerture.valorantcompose.R
 import com.canerture.valorantcompose.common.Constants
 import com.canerture.valorantcompose.navigation.Screen
@@ -27,7 +26,10 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 @Composable
-fun MainScreen(navController: NavHostController) {
+fun MainScreen(
+    navigateToRouteOne: (String) -> Unit,
+    navigateToRouteTwo: (String) -> Unit
+) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -44,7 +46,12 @@ fun MainScreen(navController: NavHostController) {
             Screen.Maps.route,
             Constants.CATEGORY_AGENTS,
             Constants.CATEGORY_MAPS,
-            navController
+            navigateToRouteOne = {
+                navigateToRouteOne.invoke(it)
+            },
+            navigateToRouteTwo = {
+                navigateToRouteTwo.invoke(it)
+            }
         )
 
         Spacer(modifier = Modifier.size(20.dp))
@@ -56,7 +63,12 @@ fun MainScreen(navController: NavHostController) {
             Screen.CompetitiveTiers.route,
             Constants.CATEGORY_WEAPONS,
             Constants.CATEGORY_COMPETITIVE_TIERS,
-            navController
+            navigateToRouteOne = {
+                navigateToRouteOne.invoke(it)
+            },
+            navigateToRouteTwo = {
+                navigateToRouteOne.invoke(it)
+            }
         )
     }
 }
@@ -69,16 +81,21 @@ fun DrawCategoryItem(
     routeTwo: String,
     categoryOne: String,
     categoryTwo: String,
-    navController: NavHostController
+    navigateToRouteOne: (String) -> Unit,
+    navigateToRouteTwo: (String) -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Column(
             modifier = Modifier
-                .clickable { navController.navigate(route = routeOne) }
+                .clickable {
+                    navigateToRouteOne.invoke(routeOne)
+                }
                 .background(color = ValoRed, shape = RoundedCornerShape(24.dp))
                 .size(150.dp)
                 .padding(horizontal = 12.dp),
@@ -101,7 +118,9 @@ fun DrawCategoryItem(
 
         Column(
             modifier = Modifier
-                .clickable { navController.navigate(route = routeTwo) }
+                .clickable {
+                    navigateToRouteTwo.invoke(routeTwo)
+                }
                 .background(color = ValoRed, shape = RoundedCornerShape(24.dp))
                 .size(150.dp)
                 .padding(horizontal = 12.dp),
