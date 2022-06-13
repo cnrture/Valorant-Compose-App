@@ -14,14 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.canerture.valorantcompose.common.components.ErrorText
-import com.canerture.valorantcompose.navigation.Screen
 
 @Composable
 fun AgentsScreen(
-    navController: NavController,
-    viewModel: AgentsViewModel = hiltViewModel()
+    viewModel: AgentsViewModel = hiltViewModel(),
+    navigateToAgentDetail: (String) -> Unit,
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getAgents()
@@ -38,7 +36,7 @@ fun AgentsScreen(
                 AgentItem(
                     agent = agentItem,
                     onItemClick = {
-                        navController.navigate("${Screen.AgentDetail.route}/$it")
+                        navigateToAgentDetail.invoke(it)
                     }
                 )
             }

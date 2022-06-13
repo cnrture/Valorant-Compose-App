@@ -14,14 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.canerture.valorantcompose.common.components.ErrorText
-import com.canerture.valorantcompose.navigation.Screen
 
 @Composable
 fun MapsScreen(
-    navController: NavController,
-    viewModel: MapsViewModel = hiltViewModel()
+    viewModel: MapsViewModel = hiltViewModel(),
+    navigateToMapDetail: (String) -> Unit
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getMaps()
@@ -39,7 +37,7 @@ fun MapsScreen(
                 MapItem(
                     map = mapItem,
                     onItemClick = {
-                        navController.navigate("${Screen.MapDetail.route}/$it")
+                        navigateToMapDetail(it)
                     }
                 )
             }

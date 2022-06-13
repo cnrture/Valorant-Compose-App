@@ -29,15 +29,30 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
     ) {
 
         composable(route = Screen.Splash.route) {
-            SplashScreen(navController)
+            SplashScreen(
+                navigateToAgents = {
+                    navController.navigate(Screen.Agents.route)
+                }
+            )
         }
 
         composable(route = Screen.Main.route) {
-            MainScreen(navController)
+            MainScreen(
+                navigateToRouteOne = {
+                    navController.navigate(route = it)
+                },
+                navigateToRouteTwo = {
+                    navController.navigate(it)
+                }
+            )
         }
 
         composable(route = Screen.Agents.route) {
-            AgentsScreen(navController)
+            AgentsScreen(
+                navigateToAgentDetail = {
+                    navController.navigate("${Screen.AgentDetail.route}/$it")
+                }
+            )
         }
 
         composable(route = "${Screen.AgentDetail.route}/{agentUuid}",
@@ -51,7 +66,11 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
         }
 
         composable(route = Screen.Maps.route) {
-            MapsScreen(navController)
+            MapsScreen(
+                navigateToMapDetail = {
+                    navController.navigate("${Screen.MapDetail.route}/$it")
+                }
+            )
         }
 
         composable(route = "${Screen.MapDetail.route}/{mapUuid}",
@@ -64,7 +83,11 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
         }
 
         composable(route = Screen.Weapons.route) {
-            WeaponsScreen(navController)
+            WeaponsScreen(
+                navigateToWeaponDetail = {
+                    navController.navigate("${Screen.WeaponDetail.route}/$it")
+                }
+            )
         }
 
         composable(route = "${Screen.WeaponDetail.route}/{weaponUuid}",

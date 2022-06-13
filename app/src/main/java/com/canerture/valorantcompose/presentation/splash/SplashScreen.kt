@@ -14,13 +14,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.canerture.valorantcompose.R
-import com.canerture.valorantcompose.navigation.Screen
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavHostController) {
+fun SplashScreen(
+    navigateToAgents: () -> Unit
+) {
 
     var startAnimation by remember { mutableStateOf(false) }
     val alphaAnimation = animateFloatAsState(
@@ -33,7 +33,7 @@ fun SplashScreen(navController: NavHostController) {
     LaunchedEffect(key1 = true) {
         startAnimation = true
         delay(3000)
-        navController.navigate(Screen.Agents.route)
+        navigateToAgents.invoke()
     }
 
     SplashDesign(alpha = alphaAnimation.value)
