@@ -19,7 +19,11 @@ class WeaponsViewModel @Inject constructor(
     private val _state = mutableStateOf(WeaponsState())
     val state: State<WeaponsState> = _state
 
-    fun getWeapons() {
+    init {
+        getWeapons()
+    }
+
+    private fun getWeapons() {
         getWeaponsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

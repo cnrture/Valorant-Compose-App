@@ -2,8 +2,10 @@ package com.canerture.valorantcompose.presentation.map.mapdetail
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.canerture.valorantcompose.common.Constants
 import com.canerture.valorantcompose.common.Resource
 import com.canerture.valorantcompose.domain.usecase.maps.GetMapDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,13 +15,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MapDetailViewModel @Inject constructor(
-    private val getMapDetailUseCase: GetMapDetailUseCase
+    private val getMapDetailUseCase: GetMapDetailUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = mutableStateOf(MapDetailState())
     val state: State<MapDetailState> = _state
 
-    fun getMapDetail(mapUuid: String) {
+    init {
+        savedStateHandle.get<String>(Constants.PARAM_MAP_ID)?.let { mapId ->
+            getMapDetail(mapId)
+        }
+    }
+
+    private fun getMapDetail(mapUuid: String) {
         getMapDetailUseCase(mapUuid).onEach { result ->
             when (result) {
                 is Resource.Success -> {

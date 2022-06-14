@@ -38,13 +38,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AgentDetailScreen(
-    agentUuid: String,
     viewModel: AgentDetailViewModel = hiltViewModel()
 ) {
-
-    LaunchedEffect(key1 = true) {
-        viewModel.getAgentDetail(agentUuid)
-    }
 
     val state = viewModel.state.value
 

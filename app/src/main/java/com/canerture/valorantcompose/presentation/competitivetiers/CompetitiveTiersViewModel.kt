@@ -19,7 +19,11 @@ class CompetitiveTiersViewModel @Inject constructor(
     private val _state = mutableStateOf(CompetitiveTiersState())
     val state: State<CompetitiveTiersState> = _state
 
-    fun getCompetitiveTiers() {
+    init {
+        getCompetitiveTiers()
+    }
+
+    private fun getCompetitiveTiers() {
         getCompetitiveTiersUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

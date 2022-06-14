@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,9 +20,6 @@ fun AgentsScreen(
     viewModel: AgentsViewModel = hiltViewModel(),
     navigateToAgentDetail: (String) -> Unit,
 ) {
-    LaunchedEffect(key1 = true) {
-        viewModel.getAgents()
-    }
 
     val state = viewModel.state.value
 

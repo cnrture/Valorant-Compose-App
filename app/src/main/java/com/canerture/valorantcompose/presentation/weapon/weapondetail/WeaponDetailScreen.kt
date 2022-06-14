@@ -36,13 +36,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun WeaponDetailScreen(
-    weaponUuid: String,
     viewModel: WeaponDetailViewModel = hiltViewModel()
 ) {
-
-    LaunchedEffect(key1 = true) {
-        viewModel.getWeaponDetail(weaponUuid)
-    }
 
     val state = viewModel.state.value
 
