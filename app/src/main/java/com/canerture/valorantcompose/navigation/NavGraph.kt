@@ -29,7 +29,11 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
         composable(route = Screen.Splash.route) {
             SplashScreen(
                 navigateToAgents = {
-                    navController.navigate(Screen.Agents.route)
+                    navController.navigate(Screen.Agents.route) {
+                        popUpTo(Screen.Splash.route) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
