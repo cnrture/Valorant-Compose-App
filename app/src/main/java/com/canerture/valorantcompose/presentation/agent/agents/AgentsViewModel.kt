@@ -19,7 +19,11 @@ class AgentsViewModel @Inject constructor(
     private val _state = mutableStateOf(AgentsState())
     val state: State<AgentsState> = _state
 
-    fun getAgents() {
+    init {
+        getAgents()
+    }
+
+    private fun getAgents() {
         getAgentsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

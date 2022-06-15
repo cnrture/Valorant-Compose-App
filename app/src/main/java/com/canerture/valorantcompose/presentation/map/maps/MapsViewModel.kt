@@ -19,7 +19,11 @@ class MapsViewModel @Inject constructor(
     private val _state = mutableStateOf(MapsState())
     val state: State<MapsState> = _state
 
-    fun getMaps() {
+    init {
+        getMaps()
+    }
+
+    private fun getMaps() {
         getMapsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

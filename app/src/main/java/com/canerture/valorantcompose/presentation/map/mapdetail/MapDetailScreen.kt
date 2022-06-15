@@ -7,7 +7,6 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,13 +20,8 @@ import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun MapDetailScreen(
-    mapUuid: String,
     viewModel: MapDetailViewModel = hiltViewModel()
 ) {
-
-    LaunchedEffect(key1 = true) {
-        viewModel.getMapDetail(mapUuid)
-    }
 
     val state = viewModel.state.value
 

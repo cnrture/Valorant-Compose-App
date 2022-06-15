@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.canerture.valorantcompose.presentation.agent.agentdetail.AgentDetailScreen
 import com.canerture.valorantcompose.presentation.agent.agents.AgentsScreen
 import com.canerture.valorantcompose.presentation.competitivetiers.CompetitiveTiersScreen
@@ -31,7 +29,11 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
         composable(route = Screen.Splash.route) {
             SplashScreen(
                 navigateToAgents = {
-                    navController.navigate(Screen.Agents.route)
+                    navController.navigate(Screen.Agents.route) {
+                        popUpTo(Screen.Splash.route) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
@@ -55,14 +57,8 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
             )
         }
 
-        composable(route = "${Screen.AgentDetail.route}/{agentUuid}",
-            arguments = listOf(
-                navArgument("agentUuid") { type = NavType.StringType }
-            )
-        ) {
-            it.arguments?.getString("agentUuid")?.let { agentUuid ->
-                AgentDetailScreen(agentUuid)
-            }
+        composable(route = "${Screen.AgentDetail.route}/{agentUuid}") {
+            AgentDetailScreen()
         }
 
         composable(route = Screen.Maps.route) {
@@ -73,13 +69,8 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
             )
         }
 
-        composable(route = "${Screen.MapDetail.route}/{mapUuid}",
-            arguments = listOf(
-                navArgument("mapUuid") { type = NavType.StringType }
-            )) {
-            it.arguments?.getString("mapUuid")?.let { mapUuid ->
-                MapDetailScreen(mapUuid)
-            }
+        composable(route = "${Screen.MapDetail.route}/{mapUuid}") {
+            MapDetailScreen()
         }
 
         composable(route = Screen.Weapons.route) {
@@ -90,13 +81,8 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
             )
         }
 
-        composable(route = "${Screen.WeaponDetail.route}/{weaponUuid}",
-            arguments = listOf(
-                navArgument("weaponUuid") { type = NavType.StringType }
-            )) {
-            it.arguments?.getString("weaponUuid")?.let { weaponUuid ->
-                WeaponDetailScreen(weaponUuid)
-            }
+        composable(route = "${Screen.WeaponDetail.route}/{weaponUuid}") {
+            WeaponDetailScreen()
         }
 
         composable(route = Screen.CompetitiveTiers.route) {
