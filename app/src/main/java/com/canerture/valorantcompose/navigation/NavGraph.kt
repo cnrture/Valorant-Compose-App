@@ -10,7 +10,6 @@ import androidx.navigation.compose.composable
 import com.canerture.valorantcompose.presentation.agent.agentdetail.AgentDetailScreen
 import com.canerture.valorantcompose.presentation.agent.agents.AgentsScreen
 import com.canerture.valorantcompose.presentation.competitivetiers.CompetitiveTiersScreen
-import com.canerture.valorantcompose.presentation.main.MainScreen
 import com.canerture.valorantcompose.presentation.map.mapdetail.MapDetailScreen
 import com.canerture.valorantcompose.presentation.map.maps.MapsScreen
 import com.canerture.valorantcompose.presentation.splash.SplashScreen
@@ -34,17 +33,6 @@ fun NavGraph(navController: NavHostController, paddingValues: PaddingValues) {
                             inclusive = true
                         }
                     }
-                }
-            )
-        }
-
-        composable(route = Screen.Main.route) {
-            MainScreen(
-                navigateToRouteOne = {
-                    navController.navigate(route = it)
-                },
-                navigateToRouteTwo = {
-                    navController.navigate(it)
                 }
             )
         }
