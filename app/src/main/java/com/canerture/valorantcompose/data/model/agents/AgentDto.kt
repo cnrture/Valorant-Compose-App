@@ -13,7 +13,7 @@ data class AgentDto(
     @SerializedName("backgroundGradientColors")
     val backgroundGradientColors: Any,
     @SerializedName("bustPortrait")
-    val bustPortrait: String,
+    val bustPortrait: String?,
     @SerializedName("characterTags")
     val characterTags: Any,
     @SerializedName("description")
@@ -29,7 +29,7 @@ data class AgentDto(
     @SerializedName("fullPortrait")
     val fullPortrait: String,
     @SerializedName("fullPortraitV2")
-    val fullPortraitV2: String,
+    val fullPortraitV2: String?,
     @SerializedName("isAvailableForTest")
     val isAvailableForTest: Boolean,
     @SerializedName("isBaseContent")
@@ -54,7 +54,7 @@ fun AgentDto.toAgent(): Agent {
         description = description,
         displayIcon = displayIcon,
         displayName = displayName,
-        fullPortraitV2 = fullPortraitV2,
+        fullPortraitV2 = fullPortraitV2 ?: fullPortrait,
         role = role,
         uuid = uuid
     )
