@@ -14,4 +14,6 @@
     <string name="text_head">Head</string>
     <string name="text_body">Body</string>
     <string name="text_leg">Leg</string>
+
+    <string name="search_agent">Search Agent</string>
 </resources>
