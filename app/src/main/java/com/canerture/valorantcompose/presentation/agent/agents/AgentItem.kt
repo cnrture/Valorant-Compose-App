@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,9 @@ fun AgentItem(
     agent: Agent,
     onItemClick: (String) -> Unit
 ) {
+    val configuration = LocalConfiguration.current
+    val imageHeight = (configuration.screenHeightDp / 3f).dp
+
     Card(
         modifier = Modifier
             .clickable { onItemClick(agent.uuid) }
@@ -39,7 +43,7 @@ fun AgentItem(
                 imageModel = agent.displayIcon,
                 contentScale = ContentScale.Crop,
                 circularReveal = CircularReveal(),
-                modifier = Modifier.size(140.dp)
+                modifier = Modifier.size(imageHeight)
             )
 
             Text(
