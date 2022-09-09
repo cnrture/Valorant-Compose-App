@@ -25,7 +25,7 @@ fun AgentsScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
+            columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(12.dp)
         ) {
             items(state.agents) { agentItem ->
