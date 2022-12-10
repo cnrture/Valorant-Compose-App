@@ -31,19 +31,14 @@ class AgentsViewModel @Inject constructor(
     private fun getAgents() {
         getAgentsUseCase().onEach { result ->
             when (result) {
+                Resource.Loading -> _state.value = AgentsState(isLoading = true)
                 is Resource.Success -> {
-                    result.data?.let {
+                    result.data.let {
                         _state.value = AgentsState(agents = it)
                         allAgents = it
                     }
                 }
-                is Resource.Error -> {
-                    _state.value =
-                        AgentsState(error = result.errorMessage ?: "Unexpected error!")
-                }
-                is Resource.Loading -> {
-                    _state.value = AgentsState(isLoading = true)
-                }
+                is Resource.Error -> _state.value = AgentsState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }
@@ -59,18 +54,14 @@ class AgentsViewModel @Inject constructor(
             }
 
         if (foundAgents.isEmpty()) {
-            _state.value =
-                AgentsState(error = "No agents matching with your search")
-            return
+            _state.value = AgentsState(error = "No agents matching with your search")
+        }   else {
+            _state.value = AgentsState(agents = foundAgents)
         }
-
-        _state.value = AgentsState(agents = foundAgents)
-
     }
 
     fun clearSearchQuery() {
         _state.value = AgentsState(agents = allAgents)
         _searchQuery.value = ""
-        return
     }
 }

@@ -17,8 +17,8 @@ class GetCompetitiveTiersUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Tier>>> = flow {
 
         try {
-            emit(Resource.Loading())
-            valorantRepository.getCompetitiveTiers().data.last().tiers.let { tiers ->
+            emit(Resource.Loading)
+            valorantRepository.getCompetitiveTiers().data?.last()?.tiers?.let { tiers ->
                 val tiersTemp = arrayListOf<TierDto>()
                 tiers.forEach { tier ->
                     if (tier.rankTriangleUpIcon != null) {

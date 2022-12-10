@@ -16,8 +16,10 @@ class GetMapDetailUseCase @Inject constructor(
     operator fun invoke(mapUuid: String): Flow<Resource<Map>> = flow {
 
         try {
-            emit(Resource.Loading())
-            emit(Resource.Success(valorantRepository.getMapByUuid(mapUuid).data.toMap()))
+            emit(Resource.Loading)
+            valorantRepository.getMapByUuid(mapUuid).data?.toMap()?.let {
+                emit(Resource.Success(it))
+            }
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         } catch (e: IOException) {

@@ -5,34 +5,32 @@ import com.google.gson.annotations.SerializedName
 
 data class WeaponDto(
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("category")
-    val category: String,
+    val category: String?,
     @SerializedName("defaultSkinUuid")
-    val defaultSkinUuid: String,
+    val defaultSkinUuid: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("killStreamIcon")
-    val killStreamIcon: String,
+    val killStreamIcon: String?,
     @SerializedName("shopData")
-    val shopData: ShopData,
+    val shopData: ShopData?,
     @SerializedName("skins")
-    var skins: List<Skin>,
+    var skins: List<Skin>?,
     @SerializedName("uuid")
-    val uuid: String,
+    val uuid: String?,
     @SerializedName("weaponStats")
-    val weaponStats: WeaponStats
+    val weaponStats: WeaponStats?
 )
 
-fun WeaponDto.toWeapon(): Weapon {
-    return Weapon(
-        category = category,
-        displayIcon = displayIcon,
-        displayName = displayName,
-        skins = skins,
-        uuid = uuid,
-        weaponStats = weaponStats
-    )
-}
+fun WeaponDto.toWeapon() = Weapon(
+    category = category,
+    displayIcon = displayIcon,
+    displayName = displayName,
+    skins = skins,
+    uuid = uuid,
+    weaponStats = weaponStats
+)

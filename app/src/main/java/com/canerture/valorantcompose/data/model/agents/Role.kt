@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 data class Role(
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("uuid")
-    val uuid: String
+    val uuid: String?
 )

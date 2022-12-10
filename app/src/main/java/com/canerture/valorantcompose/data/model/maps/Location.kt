@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Location(
     @SerializedName("x")
-    val x: Double,
+    val x: Double?,
     @SerializedName("y")
-    val y: Double
+    val y: Double?
 )

@@ -16,8 +16,10 @@ class GetWeaponsUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Weapon>>> = flow {
 
         try {
-            emit(Resource.Loading())
-            emit(Resource.Success(valorantRepository.getWeapons().data.map { it.toWeapon() }))
+            emit(Resource.Loading)
+            valorantRepository.getWeapons().data?.map { it.toWeapon() }?.let {
+                emit(Resource.Success(it))
+            }
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         } catch (e: IOException) {

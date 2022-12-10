@@ -26,18 +26,9 @@ class MapsViewModel @Inject constructor(
     private fun getMaps() {
         getMapsUseCase().onEach { result ->
             when (result) {
-                is Resource.Success -> {
-                    result.data?.let {
-                        _state.value = MapsState(maps = it)
-                    }
-                }
-                is Resource.Error -> {
-                    _state.value =
-                        MapsState(error = result.errorMessage ?: "Unexpected error!")
-                }
-                is Resource.Loading -> {
-                    _state.value = MapsState(isLoading = true)
-                }
+                Resource.Loading -> _state.value = MapsState(isLoading = true)
+                is Resource.Success -> _state.value = MapsState(maps = result.data)
+                is Resource.Error -> _state.value = MapsState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }

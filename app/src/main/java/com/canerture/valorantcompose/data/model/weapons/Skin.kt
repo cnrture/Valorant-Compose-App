@@ -4,21 +4,21 @@ import com.google.gson.annotations.SerializedName
 
 data class Skin(
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("chromas")
-    val chromas: List<Chroma>,
+    val chromas: List<Chroma>?,
     @SerializedName("contentTierUuid")
-    val contentTierUuid: String,
+    val contentTierUuid: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("levels")
-    val levels: List<Level>,
+    val levels: List<Level>?,
     @SerializedName("themeUuid")
-    val themeUuid: String,
+    val themeUuid: String?,
     @SerializedName("uuid")
-    val uuid: String,
+    val uuid: String?,
     @SerializedName("wallpaper")
-    val wallpaper: Any
+    val wallpaper: Any?
 )

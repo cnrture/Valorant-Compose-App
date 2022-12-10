@@ -16,8 +16,10 @@ class GetAgentsUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Agent>>> = flow {
 
         try {
-            emit(Resource.Loading())
-            emit(Resource.Success(valorantRepository.getAgents().data.map { it.toAgent() }))
+            emit(Resource.Loading)
+            valorantRepository.getAgents().data?.map { it.toAgent() }?.let {
+                emit(Resource.Success(it))
+            }
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         } catch (e: IOException) {

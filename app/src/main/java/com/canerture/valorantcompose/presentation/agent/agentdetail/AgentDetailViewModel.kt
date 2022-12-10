@@ -31,20 +31,9 @@ class AgentDetailViewModel @Inject constructor(
     private fun getAgentDetail(agentUuid: String) {
         getAgentDetailUseCase(agentUuid).onEach { result ->
             when (result) {
-                is Resource.Success -> {
-                    result.data?.let {
-                        _state.value = AgentDetailState(agent = it)
-                    }
-                }
-                is Resource.Error -> {
-                    _state.value =
-                        AgentDetailState(
-                            error = result.errorMessage ?: "Unexpected error!"
-                        )
-                }
-                is Resource.Loading -> {
-                    _state.value = AgentDetailState(isLoading = true)
-                }
+                Resource.Loading -> _state.value = AgentDetailState(isLoading = true)
+                is Resource.Success -> _state.value = AgentDetailState(agent = result.data)
+                is Resource.Error -> _state.value = AgentDetailState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }

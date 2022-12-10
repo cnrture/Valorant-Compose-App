@@ -17,12 +17,13 @@ class GetWeaponDetailUseCase @Inject constructor(
     fun getWeaponDetailByUuid(weaponUuid: String): Flow<Resource<Weapon>> = flow {
 
         try {
-            emit(Resource.Loading())
-            valorantRepository.getWeaponByUuid(weaponUuid).data.toWeapon().let { weapon ->
+            emit(Resource.Loading)
+            valorantRepository.getWeaponByUuid(weaponUuid).data?.toWeapon()?.let { weapon ->
                 val skinsTemp = arrayListOf<Skin>()
-                weapon.skins.forEach { skin ->
+                weapon.skins?.forEach { skin ->
+
                     if (skin.displayIcon.isNullOrEmpty()
-                            .not() && skin.displayName.contains("Standard").not()
+                            .not() && skin.displayName.orEmpty().contains("Standard").not()
                     ) {
                         skinsTemp.add(skin)
                     }

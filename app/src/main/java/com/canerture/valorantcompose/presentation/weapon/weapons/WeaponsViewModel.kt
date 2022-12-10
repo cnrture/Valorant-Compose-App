@@ -26,18 +26,9 @@ class WeaponsViewModel @Inject constructor(
     private fun getWeapons() {
         getWeaponsUseCase().onEach { result ->
             when (result) {
-                is Resource.Success -> {
-                    result.data?.let {
-                        _state.value = WeaponsState(weapons = it)
-                    }
-                }
-                is Resource.Error -> {
-                    _state.value =
-                        WeaponsState(error = result.errorMessage ?: "Unexpected error!")
-                }
-                is Resource.Loading -> {
-                    _state.value = WeaponsState(isLoading = true)
-                }
+                Resource.Loading -> _state.value = WeaponsState(isLoading = true)
+                is Resource.Success -> _state.value = WeaponsState(weapons = result.data)
+                is Resource.Error -> _state.value = WeaponsState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }

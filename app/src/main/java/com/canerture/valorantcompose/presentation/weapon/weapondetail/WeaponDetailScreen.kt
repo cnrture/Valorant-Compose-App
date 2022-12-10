@@ -78,14 +78,14 @@ fun WeaponDetailScreen(
                     Spacer(modifier = Modifier.size(24.dp))
 
                     Text(
-                        text = it.displayName,
+                        text = it.displayName.orEmpty(),
                         style = MaterialTheme.typography.h4
                     )
 
                     Spacer(modifier = Modifier.size(12.dp))
 
                     Text(
-                        text = it.category.replace("EEquippableCategory::", ""),
+                        text = it.category.orEmpty().replace("EEquippableCategory::", ""),
                         style = MaterialTheme.typography.h5
                     )
                 }
@@ -101,23 +101,29 @@ fun WeaponDetailScreen(
                 Column(
                     modifier = Modifier.padding(start = 24.dp, end = 24.dp)
                 ) {
-                    LinearProgress(
-                        header = stringResource(R.string.text_head),
-                        progress = (damageRange.headDamage / 200).toFloat(),
-                        progressString = damageRange.headDamage.toString()
-                    )
+                    damageRange.headDamage?.div(200)?.let { it1 ->
+                        LinearProgress(
+                            header = stringResource(R.string.text_head),
+                            progress = it1.toFloat(),
+                            progressString = damageRange.headDamage.toString()
+                        )
+                    }
 
-                    LinearProgress(
-                        header = stringResource(R.string.text_body),
-                        progress = (damageRange.bodyDamage.toFloat() / 200),
-                        progressString = damageRange.bodyDamage.toString()
-                    )
+                    damageRange.bodyDamage?.toFloat()?.div(200)?.let { it1 ->
+                        LinearProgress(
+                            header = stringResource(R.string.text_body),
+                            progress = it1,
+                            progressString = damageRange.bodyDamage.toString()
+                        )
+                    }
 
-                    LinearProgress(
-                        header = stringResource(R.string.text_leg),
-                        progress = (damageRange.legDamage / 200).toFloat(),
-                        progressString = damageRange.legDamage.toString()
-                    )
+                    damageRange.legDamage?.div(200)?.let { it1 ->
+                        LinearProgress(
+                            header = stringResource(R.string.text_leg),
+                            progress = it1.toFloat(),
+                            progressString = damageRange.legDamage.toString()
+                        )
+                    }
                 }
             }
 
@@ -127,7 +133,7 @@ fun WeaponDetailScreen(
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            TabLayout(it.skins)
+            TabLayout(it.skins.orEmpty())
         }
 
         if (state.error.isNotBlank()) ErrorText(
@@ -217,7 +223,7 @@ fun TabLayout(
                     )
 
                     Text(
-                        text = skins[page].displayName,
+                        text = skins[page].displayName.orEmpty(),
                         style = MaterialTheme.typography.h5,
                         modifier = Modifier.padding(16.dp)
                     )

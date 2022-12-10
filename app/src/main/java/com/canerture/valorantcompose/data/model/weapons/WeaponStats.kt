@@ -4,33 +4,33 @@ import com.google.gson.annotations.SerializedName
 
 data class WeaponStats(
     @SerializedName("adsStats")
-    val adsStats: AdsStats,
+    val adsStats: AdsStats?,
     @SerializedName("airBurstStats")
-    val airBurstStats: Any,
+    val airBurstStats: Any?,
     @SerializedName("altFireType")
-    val altFireType: String,
+    val altFireType: String?,
     @SerializedName("altShotgunStats")
-    val altShotgunStats: Any,
+    val altShotgunStats: Any?,
     @SerializedName("damageRanges")
-    val damageRanges: List<DamageRange>,
+    val damageRanges: List<DamageRange>?,
     @SerializedName("equipTimeSeconds")
-    val equipTimeSeconds: Double,
+    val equipTimeSeconds: Double?,
     @SerializedName("feature")
-    val feature: String,
+    val feature: String?,
     @SerializedName("fireMode")
-    val fireMode: Any,
+    val fireMode: Any?,
     @SerializedName("fireRate")
-    val fireRate: Double,
+    val fireRate: Double?,
     @SerializedName("firstBulletAccuracy")
-    val firstBulletAccuracy: Double,
+    val firstBulletAccuracy: Double?,
     @SerializedName("magazineSize")
-    val magazineSize: Int,
+    val magazineSize: Int?,
     @SerializedName("reloadTimeSeconds")
-    val reloadTimeSeconds: Double,
+    val reloadTimeSeconds: Double?,
     @SerializedName("runSpeedMultiplier")
-    val runSpeedMultiplier: Double,
+    val runSpeedMultiplier: Double?,
     @SerializedName("shotgunPelletCount")
-    val shotgunPelletCount: Int,
+    val shotgunPelletCount: Int?,
     @SerializedName("wallPenetration")
-    val wallPenetration: String
+    val wallPenetration: String?
 )

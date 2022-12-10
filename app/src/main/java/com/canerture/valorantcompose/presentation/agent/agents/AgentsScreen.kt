@@ -1,9 +1,6 @@
 package com.canerture.valorantcompose.presentation.agent.agents
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -29,7 +26,9 @@ fun AgentsScreen(
     val searchQuery = viewModel.searchQuery.value
 
     Box {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(top = 12.dp)
+        ) {
             SearchBar(
                 searchText = searchQuery,
                 placeholderText = stringResource(R.string.search_agent),
@@ -38,7 +37,9 @@ fun AgentsScreen(
                 },
                 onClearClick = {
                     viewModel.clearSearchQuery()
-                })
+                },
+                backgroundColor = Color.White
+            )
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(3),

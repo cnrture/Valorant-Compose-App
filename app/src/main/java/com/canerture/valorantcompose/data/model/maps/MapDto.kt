@@ -6,39 +6,37 @@ import kotlinx.parcelize.RawValue
 
 data class MapDto(
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("callouts")
-    val callouts: @RawValue List<Callout>,
+    val callouts: @RawValue List<Callout>?,
     @SerializedName("coordinates")
-    val coordinates: String,
+    val coordinates: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("listViewIcon")
-    val listViewIcon: String,
+    val listViewIcon: String?,
     @SerializedName("mapUrl")
-    val mapUrl: String,
+    val mapUrl: String?,
     @SerializedName("splash")
-    val splash: String,
+    val splash: String?,
     @SerializedName("uuid")
-    val uuid: String,
+    val uuid: String?,
     @SerializedName("xMultiplier")
-    val xMultiplier: Double,
+    val xMultiplier: Double?,
     @SerializedName("xScalarToAdd")
-    val xScalarToAdd: Double,
+    val xScalarToAdd: Double?,
     @SerializedName("yMultiplier")
-    val yMultiplier: Double,
+    val yMultiplier: Double?,
     @SerializedName("yScalarToAdd")
-    val yScalarToAdd: Double
+    val yScalarToAdd: Double?
 )
 
-fun MapDto.toMap(): Map {
-    return Map(
-        coordinates = coordinates,
-        displayIcon = displayIcon,
-        displayName = displayName,
-        splash = splash,
-        uuid = uuid
-    )
-}
+fun MapDto.toMap() = Map(
+    coordinates = coordinates,
+    displayIcon = displayIcon,
+    displayName = displayName,
+    splash = splash,
+    uuid = uuid
+)

@@ -5,30 +5,28 @@ import com.google.gson.annotations.SerializedName
 
 data class TierDto(
     @SerializedName("backgroundColor")
-    val backgroundColor: String,
+    val backgroundColor: String?,
     @SerializedName("color")
-    val color: String,
+    val color: String?,
     @SerializedName("division")
-    val division: String,
+    val division: String?,
     @SerializedName("divisionName")
-    val divisionName: String,
+    val divisionName: String?,
     @SerializedName("largeIcon")
-    val largeIcon: String,
+    val largeIcon: String?,
     @SerializedName("rankTriangleDownIcon")
-    val rankTriangleDownIcon: Any,
+    val rankTriangleDownIcon: Any?,
     @SerializedName("rankTriangleUpIcon")
-    val rankTriangleUpIcon: Any,
+    val rankTriangleUpIcon: Any?,
     @SerializedName("smallIcon")
-    val smallIcon: String,
+    val smallIcon: String?,
     @SerializedName("tier")
-    val tier: Int,
+    val tier: Int?,
     @SerializedName("tierName")
-    val tierName: String
+    val tierName: String?
 )
 
-fun TierDto.toTier(): Tier {
-    return Tier(
-        largeIcon = largeIcon,
-        tierName = tierName
-    )
-}
+fun TierDto.toTier() = Tier(
+    largeIcon = largeIcon,
+    tierName = tierName
+)

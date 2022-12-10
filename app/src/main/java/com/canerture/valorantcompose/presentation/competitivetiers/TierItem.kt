@@ -40,7 +40,7 @@ fun CompetitiveTierItem(
             )
 
             Text(
-                text = tier.tierName,
+                text = tier.tierName.orEmpty(),
                 style = MaterialTheme.typography.h6,
                 color = Color.White,
                 overflow = TextOverflow.Ellipsis,

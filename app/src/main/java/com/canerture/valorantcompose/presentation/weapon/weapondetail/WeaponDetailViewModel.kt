@@ -31,20 +31,9 @@ class WeaponDetailViewModel @Inject constructor(
     private fun getWeaponDetail(weaponUuid: String) {
         getWeaponDetailUseCase.getWeaponDetailByUuid(weaponUuid).onEach { result ->
             when (result) {
-                is Resource.Success -> {
-                    result.data?.let {
-                        _state.value = WeaponDetailState(weapon = it)
-                    }
-                }
-                is Resource.Error -> {
-                    _state.value =
-                        WeaponDetailState(
-                            error = result.errorMessage ?: "Unexpected error!"
-                        )
-                }
-                is Resource.Loading -> {
-                    _state.value = WeaponDetailState(isLoading = true)
-                }
+                Resource.Loading -> _state.value = WeaponDetailState(isLoading = true)
+                is Resource.Success -> _state.value = WeaponDetailState(weapon = result.data)
+                is Resource.Error -> _state.value = WeaponDetailState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }

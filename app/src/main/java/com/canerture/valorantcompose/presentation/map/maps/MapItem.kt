@@ -28,7 +28,7 @@ fun MapItem(
 ) {
     Card(
         modifier = Modifier
-            .clickable { onItemClick(map.uuid) }
+            .clickable { onItemClick(map.uuid.orEmpty()) }
             .fillMaxWidth()
             .padding(16.dp)
     ) {
@@ -41,7 +41,7 @@ fun MapItem(
             )
 
             Text(
-                text = map.displayName,
+                text = map.displayName.orEmpty(),
                 style = MaterialTheme.typography.h3,
                 color = Color.White,
                 overflow = TextOverflow.Ellipsis,

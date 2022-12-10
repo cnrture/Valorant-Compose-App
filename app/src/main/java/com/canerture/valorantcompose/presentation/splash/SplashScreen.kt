@@ -26,13 +26,13 @@ fun SplashScreen(
     val alphaAnimation = animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(
-            durationMillis = 3000
+            durationMillis = 2000
         )
     )
 
     LaunchedEffect(key1 = true) {
         startAnimation = true
-        delay(3000)
+        delay(2000)
         navigateToAgents.invoke()
     }
 
@@ -49,7 +49,7 @@ fun SplashDesign(alpha: Float) {
     ) {
         Image(
             modifier = Modifier
-                .size(300.dp)
+                .size(200.dp)
                 .alpha(alpha = alpha),
             painter = painterResource(id = R.drawable.logo_valorant),
             contentDescription = stringResource(R.string.desc_valorant_logo),

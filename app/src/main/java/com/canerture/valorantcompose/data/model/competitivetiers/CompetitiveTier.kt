@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class CompetitiveTier(
     @SerializedName("assetObjectName")
-    val assetObjectName: String,
+    val assetObjectName: String?,
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("tiers")
-    val tiers: List<TierDto>,
+    val tiers: List<TierDto>?,
     @SerializedName("uuid")
-    val uuid: String
+    val uuid: String?
 )

@@ -45,14 +45,14 @@ fun MapDetailScreen(
             Spacer(modifier = Modifier.size(24.dp))
 
             Text(
-                text = it.displayName,
+                text = it.displayName.orEmpty(),
                 style = MaterialTheme.typography.h3
             )
 
             Spacer(modifier = Modifier.size(24.dp))
 
             Text(
-                text = it.coordinates,
+                text = it.coordinates.orEmpty(),
                 style = MaterialTheme.typography.h4
             )
         }

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Callout(
     @SerializedName("location")
-    val location: Location,
+    val location: Location?,
     @SerializedName("regionName")
-    val regionName: String,
+    val regionName: String?,
     @SerializedName("superRegionName")
-    val superRegionName: String
+    val superRegionName: String?
 )

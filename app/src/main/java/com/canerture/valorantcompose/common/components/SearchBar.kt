@@ -63,9 +63,14 @@ fun SearchBar(
                 value = searchText,
                 onValueChange = onSearchTextChanged,
                 placeholder = {
-                    Text(text = placeholderText, modifier = Modifier.wrapContentHeight())
+                    Text(
+                        text = placeholderText,
+                        modifier = Modifier.wrapContentHeight(),
+                        color = Color.Black
+                    )
                 },
                 colors = TextFieldDefaults.textFieldColors(
+                    textColor = Color.Black,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     backgroundColor = Color.Transparent,

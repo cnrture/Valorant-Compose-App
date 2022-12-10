@@ -4,21 +4,21 @@ import com.google.gson.annotations.SerializedName
 
 data class ShopData(
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("canBeTrashed")
-    val canBeTrashed: Boolean,
+    val canBeTrashed: Boolean?,
     @SerializedName("category")
-    val category: String,
+    val category: String?,
     @SerializedName("categoryText")
-    val categoryText: String,
+    val categoryText: String?,
     @SerializedName("cost")
-    val cost: Int,
+    val cost: Int?,
     @SerializedName("gridPosition")
-    val gridPosition: GridPosition,
+    val gridPosition: GridPosition?,
     @SerializedName("image")
-    val image: Any,
+    val image: Any?,
     @SerializedName("newImage")
-    val newImage: String,
+    val newImage: String?,
     @SerializedName("newImage2")
-    val newImage2: Any
+    val newImage2: Any?
 )

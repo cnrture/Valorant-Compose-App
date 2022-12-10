@@ -4,15 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class Level(
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("levelItem")
-    val levelItem: Any,
+    val levelItem: Any?,
     @SerializedName("streamedVideo")
-    val streamedVideo: String,
+    val streamedVideo: String?,
     @SerializedName("uuid")
-    val uuid: String
+    val uuid: String?
 )

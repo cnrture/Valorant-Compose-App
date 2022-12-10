@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 data class AdsStats(
     @SerializedName("burstCount")
-    val burstCount: Int,
+    val burstCount: Int?,
     @SerializedName("fireRate")
-    val fireRate: Double,
+    val fireRate: Double?,
     @SerializedName("firstBulletAccuracy")
-    val firstBulletAccuracy: Double,
+    val firstBulletAccuracy: Double?,
     @SerializedName("runSpeedMultiplier")
-    val runSpeedMultiplier: Double,
+    val runSpeedMultiplier: Double?,
     @SerializedName("zoomMultiplier")
-    val zoomMultiplier: Double
+    val zoomMultiplier: Double?
 )

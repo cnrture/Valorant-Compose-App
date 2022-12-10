@@ -20,8 +20,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.canerture.valorantcompose.domain.model.Weapon
 import com.canerture.valorantcompose.presentation.theme.ValoBlue
-import com.canerture.valorantcompose.presentation.theme.ValoLightBlue
-import com.canerture.valorantcompose.presentation.theme.ValoRed
 import com.canerture.valorantcompose.presentation.theme.ValoWhite
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
@@ -33,7 +31,7 @@ fun WeaponItem(
 ) {
     Card(
         modifier = Modifier
-            .clickable { onItemClick(weapon.uuid) }
+            .clickable { onItemClick(weapon.uuid.orEmpty()) }
             .padding(12.dp),
         backgroundColor = ValoWhite
     ) {
@@ -47,7 +45,7 @@ fun WeaponItem(
             )
 
             Text(
-                text = weapon.displayName,
+                text = weapon.displayName.orEmpty(),
                 style = MaterialTheme.typography.h5,
                 color = Color.White,
                 overflow = TextOverflow.Ellipsis,

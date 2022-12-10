@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Ability(
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("slot")
-    val slot: String
+    val slot: String?
 )

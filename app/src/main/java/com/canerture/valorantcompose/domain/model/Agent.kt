@@ -8,7 +8,7 @@ data class Agent(
     val description: String,
     val displayIcon: String,
     val displayName: String,
-    val fullPortraitV2: String,
-    val role: Role,
+    val fullPortrait: String,
+    val role: Role?,
     val uuid: String
 )

@@ -16,8 +16,10 @@ class GetMapsUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Map>>> = flow {
 
         try {
-            emit(Resource.Loading())
-            emit(Resource.Success(valorantRepository.getMaps().data.map { it.toMap() }))
+            emit(Resource.Loading)
+            valorantRepository.getMaps().data?.map { it.toMap() }?.let {
+                emit(Resource.Success(it))
+            }
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         } catch (e: IOException) {

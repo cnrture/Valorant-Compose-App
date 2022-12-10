@@ -67,7 +67,7 @@ fun AgentDetailScreen(
             ) {
                 GlideImage(
                     modifier = Modifier.fillMaxSize(),
-                    imageModel = it.role.displayIcon,
+                    imageModel = it.role?.displayIcon,
                     circularReveal = CircularReveal(),
                     alpha = 0.2f
                 )
@@ -77,7 +77,7 @@ fun AgentDetailScreen(
 
                     GlideImage(
                         modifier = Modifier.size(300.dp),
-                        imageModel = it.fullPortraitV2,
+                        imageModel = it.fullPortrait,
                         circularReveal = CircularReveal(),
                         contentDescription = stringResource(R.string.desc_agent_image)
                     )
@@ -92,7 +92,7 @@ fun AgentDetailScreen(
                     Spacer(modifier = Modifier.size(12.dp))
 
                     Text(
-                        text = it.role.displayName,
+                        text = it.role?.displayName.orEmpty(),
                         style = MaterialTheme.typography.h5
                     )
                 }
@@ -215,13 +215,13 @@ fun TabLayout(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = abilities[page].displayName,
+                        text = abilities[page].displayName.orEmpty(),
                         style = MaterialTheme.typography.h5
                     )
 
                     Text(
                         modifier = Modifier.padding(16.dp),
-                        text = abilities[page].description,
+                        text = abilities[page].description.orEmpty(),
                         style = MaterialTheme.typography.body1,
                         textAlign = TextAlign.Center
                     )

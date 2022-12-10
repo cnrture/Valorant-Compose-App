@@ -5,57 +5,55 @@ import com.google.gson.annotations.SerializedName
 
 data class AgentDto(
     @SerializedName("abilities")
-    val abilities: List<Ability>,
+    val abilities: List<Ability>?,
     @SerializedName("assetPath")
-    val assetPath: String,
+    val assetPath: String?,
     @SerializedName("background")
-    val background: Any,
+    val background: Any?,
     @SerializedName("backgroundGradientColors")
-    val backgroundGradientColors: Any,
+    val backgroundGradientColors: Any?,
     @SerializedName("bustPortrait")
     val bustPortrait: String?,
     @SerializedName("characterTags")
-    val characterTags: Any,
+    val characterTags: Any?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("developerName")
-    val developerName: String,
+    val developerName: String?,
     @SerializedName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String?,
     @SerializedName("displayIconSmall")
-    val displayIconSmall: String,
+    val displayIconSmall: String?,
     @SerializedName("displayName")
-    val displayName: String,
+    val displayName: String?,
     @SerializedName("fullPortrait")
-    val fullPortrait: String,
+    val fullPortrait: String?,
     @SerializedName("fullPortraitV2")
     val fullPortraitV2: String?,
     @SerializedName("isAvailableForTest")
-    val isAvailableForTest: Boolean,
+    val isAvailableForTest: Boolean?,
     @SerializedName("isBaseContent")
-    val isBaseContent: Boolean,
+    val isBaseContent: Boolean?,
     @SerializedName("isFullPortraitRightFacing")
-    val isFullPortraitRightFacing: Boolean,
+    val isFullPortraitRightFacing: Boolean?,
     @SerializedName("isPlayableCharacter")
-    val isPlayableCharacter: Boolean,
+    val isPlayableCharacter: Boolean?,
     @SerializedName("killfeedPortrait")
-    val killfeedPortrait: String,
+    val killfeedPortrait: String?,
     @SerializedName("role")
-    val role: Role,
+    val role: Role?,
     @SerializedName("uuid")
-    val uuid: String,
+    val uuid: String?,
     @SerializedName("voiceLine")
-    val voiceLine: VoiceLine
+    val voiceLine: VoiceLine?
 )
 
-fun AgentDto.toAgent(): Agent {
-    return Agent(
-        abilities = abilities,
-        description = description,
-        displayIcon = displayIcon,
-        displayName = displayName,
-        fullPortraitV2 = fullPortraitV2 ?: fullPortrait,
-        role = role,
-        uuid = uuid
-    )
-}
+fun AgentDto.toAgent() = Agent(
+    abilities = abilities.orEmpty(),
+    description = description.orEmpty(),
+    displayIcon = displayIcon.orEmpty(),
+    displayName = displayName.orEmpty(),
+    fullPortrait = fullPortraitV2 ?: fullPortrait.orEmpty(),
+    role = role,
+    uuid = uuid.orEmpty()
+)

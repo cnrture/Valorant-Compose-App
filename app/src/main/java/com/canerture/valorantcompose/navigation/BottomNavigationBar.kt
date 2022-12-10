@@ -39,7 +39,7 @@ fun BottomNavigationBar(
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
 
-                items.forEach { item ->
+                items.forEach { _ ->
                     BottomNavigation(
                         backgroundColor = ValoLightBlue
                     ) {

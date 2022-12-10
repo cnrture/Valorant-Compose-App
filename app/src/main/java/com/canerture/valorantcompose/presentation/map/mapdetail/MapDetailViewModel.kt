@@ -31,20 +31,9 @@ class MapDetailViewModel @Inject constructor(
     private fun getMapDetail(mapUuid: String) {
         getMapDetailUseCase(mapUuid).onEach { result ->
             when (result) {
-                is Resource.Success -> {
-                    result.data?.let {
-                        _state.value = MapDetailState(map = it)
-                    }
-                }
-                is Resource.Error -> {
-                    _state.value =
-                        MapDetailState(
-                            error = result.errorMessage ?: "Unexpected error!"
-                        )
-                }
-                is Resource.Loading -> {
-                    _state.value = MapDetailState(isLoading = true)
-                }
+                Resource.Loading -> _state.value = MapDetailState(isLoading = true)
+                is Resource.Success -> _state.value = MapDetailState(map = result.data)
+                is Resource.Error -> _state.value = MapDetailState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }

@@ -26,20 +26,9 @@ class CompetitiveTiersViewModel @Inject constructor(
     private fun getCompetitiveTiers() {
         getCompetitiveTiersUseCase().onEach { result ->
             when (result) {
-                is Resource.Success -> {
-                    result.data?.let {
-                        _state.value = CompetitiveTiersState(tier = it)
-                    }
-                }
-                is Resource.Error -> {
-                    _state.value =
-                        CompetitiveTiersState(
-                            error = result.errorMessage ?: "Unexpected error!"
-                        )
-                }
-                is Resource.Loading -> {
-                    _state.value = CompetitiveTiersState(isLoading = true)
-                }
+                Resource.Loading -> _state.value = CompetitiveTiersState(isLoading = true)
+                is Resource.Success -> _state.value = CompetitiveTiersState(tier = result.data)
+                is Resource.Error -> _state.value = CompetitiveTiersState(error = result.errorMessage)
             }
         }.launchIn(viewModelScope)
     }

@@ -6,9 +6,9 @@
     <application
         android:name=".HiltApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_logo_valorant"
+        android:icon="@mipmap/ic_valorant_square"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_logo_valorant_round"
+        android:roundIcon="@mipmap/ic_valorant_circle"
         android:supportsRtl="true"
         android:theme="@style/Theme.ValorantCompose"
         android:usesCleartextTraffic="true">

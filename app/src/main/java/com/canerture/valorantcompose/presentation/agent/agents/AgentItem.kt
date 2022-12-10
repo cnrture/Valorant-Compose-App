@@ -30,7 +30,7 @@ fun AgentItem(
     onItemClick: (String) -> Unit
 ) {
     val configuration = LocalConfiguration.current
-    val imageHeight = (configuration.screenHeightDp / 3f).dp
+    val imageHeight = (configuration.screenHeightDp / 4f).dp
 
     Card(
         modifier = Modifier
